@@ -46,3 +46,27 @@ This will give two route files, one with 'alt' in between the suffix
 
 **Config**
 Simply set up the input and time in the .sumocfg file
+
+
+## From OD Matrices to Routes
+
+road network: use the same as the part_2, i.e., manhanttan map snippet
+
+steps:
+
+1. get network ready
+2. build TAZ file (.xml)
+3. build the OD matrix file (.od)
+4. generate od2trips.config file (.xml)
+5. prepare duarouter.config file (.duarcfg)
+
+After all above, **od2trips.config.xml** + **taz.xml** + **.od** ==> odtrips.xml
+```bash
+od2trips -c $PATH\od2trips.config.xml$ -n $PATH\taz_file.taz.xml$ -d $PATH\OD_file.od$ -o $PATH\od_file.odtrips.xml$
+```
+
+To get routes (shortest path), use .net.xml + .odtrips.xml [i.e., = .duacfg] ==> rou.xml
+```bash
+duarouter –c $PATH\duarcfg_file.trips2routes.duarcfg$ –o $od_route_file.odtrips.rou.xml$
+```
+
